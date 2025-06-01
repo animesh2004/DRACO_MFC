@@ -79,4 +79,4 @@ All core modules are clearly modularized:
 
 Pull requests and suggestions are welcome. Feel free to fork and improve DRACO\_MFC!
 
-> Designed with passion by \[Your Name] | v1.0 | 2025
+> Designed with passion by Animesh Tripathi| v1.0 | 2025
