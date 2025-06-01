@@ -1,123 +1,82 @@
-Here’s a fresh, clean version of the `README.md` file for your **MiniFlightController\_v1 (DRACO\_MFC)** project:
+# DRACO\_MFC - STM32-Based Mini Flight Controller
 
----
+## 📦 Overview
 
-````markdown
-# 🚁 MiniFlightController_v1 (DRACO_MFC)
-
-**MiniFlightController_v1**, also known as **DRACO_MFC**, is a compact and custom-designed 2-layer flight controller PCB based on the STM32F103C8Tx microcontroller. It is ideal for educational drone development, DIY UAVs, and embedded control systems.
+DRACO\_MFC is a compact and powerful STM32F103C8Tx-based flight controller designed for small-scale drones and robotics projects. It integrates essential peripherals such as an MPU6050 sensor, ESC PWM outputs, status RGB LED, buzzer, and power management, all on a clean 2-layer PCB.
 
 ---
 
 ## 🔧 Features
 
-### 🧠 Microcontroller
-- STM32F103C8Tx (ARM Cortex-M3, 72 MHz)
-- USART-based bootloader
-- External 8 MHz crystal oscillator
-- Reset circuit with push-button
-
-### 🔋 Power Supply
-- XT60 / XT30 battery input (VIN, GND)
-- SS14 diode for reverse protection
-- AMS1117-3.3 linear regulator
-- 10µF capacitors at input/output
-
-### 🔄 ESC Interfaces
-- 4 PWM outputs (PA1–PA4)
-- 3-pin headers for ESC connection (VCC, GND, Signal)
-
-### 📈 Sensors
-- MPU6050 (I2C)
-- Connected to PB6 (SCL), PB7 (SDA), INT to PA0
-
-### 🔔 Status & Feedback
-- RGB LED (power + activity indication)
-- Driven via GPIOs (e.g., PA5, PA6)
-- Buzzer circuit on PB0 (via NPN transistor + 1kΩ)
-
-### 🔋 Battery Monitoring
-- Voltage divider (2x 330Ω + 0.1µF cap)
-- ADC input on PA7
-
-### 🔌 I2C Expansion Header
-- Exposes SDA, SCL, GND, VCC for future upgrades (barometer, compass, etc.)
-
-### 💾 Programming Header
-- 4-pin header: TX, RX, GND, VCC_3V3
-- BOOT0 jumper and NRST pull-up
+* **STM32F103C8Tx** microcontroller (72 MHz, 64KB Flash)
+* **MPU6050** IMU (Gyroscope + Accelerometer)
+* **4 ESC PWM outputs** (PA1 to PA4)
+* **USART Bootloader Interface** (PA9, PA10)
+* **RGB Status LED** (PA5, PA6 + 3.3V)
+* **Passive Buzzer** with NPN (PB0)
+* **Battery Voltage Divider** (PA7)
+* **SWD Debug Access** (PA13/PA14)
+* **Reset + Boot Mode Buttons**
+* **Power via XT60 or 2-pin header** (AMS1117 3.3V Regulated)
 
 ---
 
-## 📐 Design Overview
+## 🖥️ Schematic Overview
 
-- 📄 Schematic: Created in KiCad 7
-- 🧩 PCB: 2-layer layout with optimized routing and minimal vias
-- 🖨️ Mounting: 4 corner holes for M3 screws
-- 📷 Silkscreen: Labeled pin headers, "DRACO_MFC v1.0", and author credits
+All core modules are clearly modularized:
 
----
-
-## 📁 Folder Structure
-
-```plaintext
-MiniFlightController_v1/
-├── KiCad/
-│   ├── .sch  — Schematic file
-│   ├── .kicad_pcb — PCB layout
-│   └── .lib/.dcm — Custom libraries (if used)
-├── Gerbers/ — Fabrication files
-├── Images/  — 3D renders and top view
-├── README.md
-````
+* Power Supply
+* Microcontroller core
+* Sensor interface
+* ESC output zone
+* Status indicators
 
 ---
 
-## ⚙️ Setup & Usage
+## 📐 PCB Design
 
-1. Connect a LiPo battery (7–12V) to the power input.
-2. Flash firmware using USB-TTL adapter (TX/RX → PA10/PA9).
-3. Connect ESCs to the PWM outputs.
-4. Monitor motion via MPU6050.
-5. Use PA7 to read battery level in firmware.
+* **2-layer design** (Front/Back copper)
+* Carefully routed analog + digital traces
+* Decoupling capacitors near MCU and sensor
+* Clear silkscreen labels for all headers
 
----
+### 🧩 Connectors
 
-## 🧪 Applications
-
-* Quadcopter flight control
-* Embedded robotics
-* Sensor fusion experiments
-* UAV prototype testing
-
----
-
-## 📸 Previews
-
-![3D Top View](./images/3d_top.png)
-![Schematic Preview](./images/schematic_preview.png)
+| Header | Function        | Pins               |
+| ------ | --------------- | ------------------ |
+| J1     | Power Input     | VIN, GND           |
+| J2     | Bootloader UART | TX, RX, VCC, GND   |
+| J3–J6  | ESC Outputs     | PWM, VCC, GND      |
+| J7     | I2C Breakout    | SDA, SCL, VCC, GND |
 
 ---
 
-## 📜 License
+## 🚀 Getting Started
 
-MIT License
-Designed by \[Your Name] | Version: DRACO\_MFC v1.0
-
----
-
-## 🧠 Note
-
-This board was made to balance simplicity, performance, and learning. It includes essential control and sensing while leaving room for future expansion and code flexibility.
-
-```
+1. Power the board using XT60 or 2-pin header
+2. Use USB-UART adapter on J2 to flash firmware
+3. Use PA1–PA4 for ESC signal outputs
+4. Connect MPU6050 directly or through I2C header
 
 ---
 
-Let me know if you'd like:
-- A PDF export
-- A GitHub-compatible `preview.gif`
-- A cover image for LinkedIn or GitHub
+## 🧠 Future Improvements
 
-Would you like help writing a LinkedIn post too?
-```
+* Add external flash or EEPROM
+* Integrate GPS or barometer module
+* Replace AMS1117 with buck converter for higher efficiency
+
+---
+
+## 🙌 Credits
+
+* Designed using **KiCad 7.0**
+* Inspired by open-source drone platforms
+
+---
+
+## 📬 Feedback?
+
+Pull requests and suggestions are welcome. Feel free to fork and improve DRACO\_MFC!
+
+> Designed with passion by \[Your Name] | v1.0 | 2025
